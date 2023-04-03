@@ -2010,7 +2010,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2735849, g: 0.2624006, b: 0.2624006, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.24745855, b: 0.31132078, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2051,7 +2051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.5, y: 6.5, z: -10}
+  m_LocalPosition: {x: 7.73, y: 6.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2279,6 +2279,18 @@ PrefabInstance:
     - target: {fileID: 4551630637033938777, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
       propertyPath: m_DrawMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_Size.x
+      value: 159.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 159.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
@@ -3363,6 +3375,18 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_Size.x
+      value: 31.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 31.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
 --- !u!4 &726925502 stripped
@@ -4254,6 +4278,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920250825295069038, guid: 832d27cbf61fff0419df2bce3cb33a38, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 9085472462274716525, guid: 832d27cbf61fff0419df2bce3cb33a38, type: 3}
       propertyPath: m_Name
       value: 1Rpix128
@@ -4500,6 +4528,18 @@ PrefabInstance:
     - target: {fileID: 4551630637033938777, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
       propertyPath: m_DrawMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_Size.x
+      value: 28.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332522139255448, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 27.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dde6a83d55b9d843b65b9b4b9659aec, type: 3}
