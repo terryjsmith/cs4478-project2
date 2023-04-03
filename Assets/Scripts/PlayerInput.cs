@@ -24,7 +24,29 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_currentSpeed = Input.GetAxis("Horizontal") * playerSpeed;
+        float horizMovement = Input.GetAxis("Horizontal");
+        m_currentSpeed = horizMovement * playerSpeed;
+
+        // Is the player running?
+        if(horizMovement != 0.0f && m_rigidBody.velocity.y == 0.0f) // Don't run while jumping
+        {
+            m_animator.SetBool("PlayerRunning", true);
+
+            // Which direction are they running?
+            if (horizMovement < 0.0f)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+            if (horizMovement > 0.0f)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+        }
+        else
+        {
+            m_animator.SetBool("PlayerRunning", false);
+        }
 
         // Check for jump and add force against gravity
         if (Input.GetButtonDown("Jump"))
