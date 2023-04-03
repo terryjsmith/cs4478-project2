@@ -10,6 +10,8 @@ public class CameraMovement : MonoBehaviour
     BoxCollider2D rightBound;
     BoxCollider2D player;
 
+    float cameraSpeed = 7.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,28 +31,28 @@ public class CameraMovement : MonoBehaviour
                 if(collider.gameObject.name == "RightBound" && transform.position.x < maximumX)
                 {
                     // Move camera right
-                    transform.Translate(new Vector3(5.0f * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
                     continue;
                 }
 
                 if (collider.gameObject.name == "LeftBound" && transform.position.x > minimumX)
                 {
                     // Move camera right
-                    transform.Translate(new Vector3(-5.0f * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
                     continue;
                 }
 
                 if (collider.gameObject.name == "BottomBound" && transform.position.y > minimumY)
                 {
                     // Move camera right
-                    transform.Translate(new Vector3(0, -5.0f * Time.deltaTime, 0));
+                    transform.Translate(new Vector3(0, -cameraSpeed * Time.deltaTime, 0));
                     continue;
                 }
 
                 if (collider.gameObject.name == "TopBound" && transform.position.y < maximumY)
                 {
                     // Move camera right
-                    transform.Translate(new Vector3(0, 5.0f * Time.deltaTime, 0));
+                    transform.Translate(new Vector3(0, cameraSpeed * Time.deltaTime, 0));
                     continue;
                 }
             }

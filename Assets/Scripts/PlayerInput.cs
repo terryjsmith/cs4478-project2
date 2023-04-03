@@ -31,21 +31,21 @@ public class PlayerInput : MonoBehaviour
         if(horizMovement != 0.0f && m_rigidBody.velocity.y == 0.0f) // Don't run while jumping
         {
             m_animator.SetBool("PlayerRunning", true);
-
-            // Which direction are they running?
-            if (horizMovement < 0.0f)
-            {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-
-            if (horizMovement > 0.0f)
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
         }
         else
         {
             m_animator.SetBool("PlayerRunning", false);
+        }
+
+        // Which direction are they running?
+        if (horizMovement < 0.0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        if (horizMovement > 0.0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
         }
 
         // Check for jump and add force against gravity
