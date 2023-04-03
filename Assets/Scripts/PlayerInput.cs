@@ -12,11 +12,14 @@ public class PlayerInput : MonoBehaviour
 
     Rigidbody2D m_rigidBody;
     float m_currentSpeed;
+    Animator m_animator;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
+        m_animator = GetComponentInChildren<Animator>();
+        //m_animator.enabled = false;
     }
 
     // Update is called once per frame
@@ -28,6 +31,16 @@ public class PlayerInput : MonoBehaviour
         {
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
             m_rigidBody.AddForce(transform.up * playerThrust);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            m_animator.SetBool("PlayerShooting", true);
+        }
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            m_animator.SetBool("PlayerShooting", false);
         }
     }
 
