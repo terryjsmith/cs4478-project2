@@ -104,6 +104,8 @@ MonoBehaviour:
   flashingTimer: 0.5
   zombieSpeed: 3
   walkRadius: 5
+  TakingDamage: {fileID: 0}
+  Death: {fileID: 0}
 --- !u!50 &4950777951609967417
 Rigidbody2D:
   serializedVersion: 4

@@ -18,7 +18,8 @@ public class Zombie : MonoBehaviour
 
     [SerializeField] private AudioSource TakingDamage;
     [SerializeField] private AudioSource Death;
-  
+    // [SerializeField] private AudioSource AttackingSound;
+
     private Rigidbody2D m_rigidBody;
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
@@ -99,7 +100,7 @@ public class Zombie : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if(distance < 4.0f)
         {
-            
+            // AttackingSound.Play();
             m_animator.SetBool("ZombieAttacking", true);
 
             // Make sure we're facing the player to attack them
@@ -114,6 +115,7 @@ public class Zombie : MonoBehaviour
         }
         else
         {
+            
             m_animator.SetBool("ZombieAttacking", false);
         }
     }

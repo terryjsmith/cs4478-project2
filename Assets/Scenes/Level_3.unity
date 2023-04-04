@@ -7862,7 +7862,7 @@ PrefabInstance:
     - target: {fileID: 8993681895381300713, guid: 2a19c706965d2a942b42b21e2710fa9b, type: 3}
       propertyPath: Death
       value: 
-      objectReference: {fileID: 1253872790}
+      objectReference: {fileID: 533573286}
     - target: {fileID: 8993681895381300713, guid: 2a19c706965d2a942b42b21e2710fa9b, type: 3}
       propertyPath: walkRadius
       value: 2
@@ -7870,11 +7870,11 @@ PrefabInstance:
     - target: {fileID: 8993681895381300713, guid: 2a19c706965d2a942b42b21e2710fa9b, type: 3}
       propertyPath: TakingDamage
       value: 
-      objectReference: {fileID: 1253872789}
+      objectReference: {fileID: 533573287}
     - target: {fileID: 8993681895381300713, guid: 2a19c706965d2a942b42b21e2710fa9b, type: 3}
       propertyPath: AttackingSound
       value: 
-      objectReference: {fileID: 1253872791}
+      objectReference: {fileID: 533573294}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a19c706965d2a942b42b21e2710fa9b, type: 3}
 --- !u!1 &1008143997
