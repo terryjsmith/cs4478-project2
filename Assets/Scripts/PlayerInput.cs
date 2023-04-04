@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     // Player direction
     bool flipped = false;
 
+    Image damagePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,8 @@ public class PlayerInput : MonoBehaviour
         hearts.Add(GameObject.Find("Heart1"));
         hearts.Add(GameObject.Find("Heart2"));
         hearts.Add(GameObject.Find("Heart3"));
+
+        damagePanel = GameObject.Find("DamagePanel").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -46,6 +50,12 @@ public class PlayerInput : MonoBehaviour
     {
         float horizMovement = Input.GetAxis("Horizontal");
         m_currentSpeed = horizMovement * playerSpeed;
+
+        // Fade away damage panel if necessary
+        if(damagePanel.color.a > 0.0f)
+        {
+            damagePanel.color = new Color(1.0f, 0.0f, 0.0f, damagePanel.color.a - (Time.deltaTime * 2.0f));
+        }
 
         // Is the player running?
         if(horizMovement != 0.0f && m_rigidBody.velocity.y == 0.0f) // Don't run while jumping
@@ -110,7 +120,9 @@ public class PlayerInput : MonoBehaviour
             hearts[lifeRemaining - 1].GetComponent<Image>().enabled = false;
             lifeRemaining--;
 
-            if(lifeRemaining <= 0)
+            damagePanel.color = new Color(1.0f, 0, 0, 0.6f);
+
+            if (lifeRemaining <= 0)
             {
                 Debug.Log("Game over man!");
             }
