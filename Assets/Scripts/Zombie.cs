@@ -15,4 +15,15 @@ public class Zombie : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("Zombie dying");
+            GetComponent<Animator>().SetBool("ZombieDying", true);
+            GameObject.Destroy(collision.gameObject);
+            GameObject.Destroy(gameObject, 1.25f);
+        }
+    }
 }
