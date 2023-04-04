@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -13,17 +14,31 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     public GameObject bulletPrefab;
 
+    // Local copies for optimization
     Rigidbody2D m_rigidBody;
-    float m_currentSpeed;
     Animator m_animator;
-    GameObject spawnPoint;
+
+    // Current speed forward
+    float m_currentSpeed;
+
+    // Hearts in UI
+    List<GameObject> hearts;
+    int lifeRemaining;
+
+    // Player direction
+    bool flipped = false;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_animator = GetComponentInChildren<Animator>();
-        spawnPoint = GameObject.Find("BulletSpawn");
+
+        lifeRemaining = 3;
+        hearts = new List<GameObject>();
+        hearts.Add(GameObject.Find("Heart1"));
+        hearts.Add(GameObject.Find("Heart2"));
+        hearts.Add(GameObject.Find("Heart3"));
     }
 
     // Update is called once per frame
@@ -46,11 +61,13 @@ public class PlayerInput : MonoBehaviour
         if (horizMovement < 0.0f)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            flipped = true;
         }
 
         if (horizMovement > 0.0f)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            flipped = false;
         }
 
         // Check for jump and add force against gravity
@@ -82,6 +99,34 @@ public class PlayerInput : MonoBehaviour
     {
         // Create a bullet at the start of our gun
         GameObject bullet = GameObject.Instantiate(bulletPrefab, transform.position - new Vector3(0, 0.5f, 0), Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(50.0f, 0.0f, 0.0f);
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3((flipped ? -1.0f : 1.0f) * 50.0f, 0.0f, 0.0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Oh no!");
+            hearts[lifeRemaining - 1].GetComponent<Image>().enabled = false;
+            lifeRemaining--;
+
+            if(lifeRemaining <= 0)
+            {
+                Debug.Log("Game over man!");
+            }
+            return;
+        }
+
+        if (collision.gameObject.tag == "Heart")
+        {
+            Debug.Log("Life remaining: " + lifeRemaining);
+            if (lifeRemaining < 3)
+            {
+                Debug.Log("Increment life remaining.");
+                hearts[lifeRemaining].GetComponent<Image>().enabled = true;
+                lifeRemaining++;
+            }
+            GameObject.Destroy(collision.gameObject);
+        }
     }
 }

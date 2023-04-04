@@ -46,6 +46,10 @@ public class Zombie : MonoBehaviour
             {
                 GetComponent<Animator>().SetBool("ZombieDying", true);
                 GameObject.Destroy(gameObject, 1.25f);
+
+                // Remove the rigidbody and collider so the player can step over a dead body without losing health
+                Destroy(GetComponent<Rigidbody2D>());
+                Destroy(GetComponent<BoxCollider2D>());
             }
             
             GameObject.Destroy(collision.gameObject);
