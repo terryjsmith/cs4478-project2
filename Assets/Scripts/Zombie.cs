@@ -53,7 +53,10 @@ public class Zombie : MonoBehaviour
         }
 		
 		// Move the zombie
-        m_rigidBody.velocity = new Vector2((m_countdownTimer > 0) ? 0.0f : zombieSpeed, m_rigidBody.velocity.y);
+        if(m_rigidBody)
+        {
+            m_rigidBody.velocity = new Vector2((m_countdownTimer > 0) ? 0.0f : zombieSpeed, m_rigidBody.velocity.y);
+        }
 
         // startX + walkRadius or startX - walkRadius boundaries
         if (transform.position.x >= startX + walkRadius)
