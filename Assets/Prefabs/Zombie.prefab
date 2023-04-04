@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865e9554bed30084ab4fce6bae3cedd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  flashingTimer: 0.5
 --- !u!50 &4950777951609967417
 Rigidbody2D:
   serializedVersion: 4
