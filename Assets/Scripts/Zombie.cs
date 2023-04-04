@@ -16,6 +16,9 @@ public class Zombie : MonoBehaviour
     [SerializeField]
     private float walkRadius = 5.0f;
 
+    [SerializeField] private AudioSource TakingDamage;
+    [SerializeField] private AudioSource Death;
+  
     private Rigidbody2D m_rigidBody;
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
@@ -95,6 +98,7 @@ public class Zombie : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if(distance < 4.0f)
         {
+            
             m_animator.SetBool("ZombieAttacking", true);
 
             // Make sure we're facing the player to attack them
@@ -120,11 +124,13 @@ public class Zombie : MonoBehaviour
             health--;
             if (health > 0)
             {
+                TakingDamage.Play();
                 GetComponent<Animator>().SetBool("ZombieFlashing", true);
                 m_countdownTimer = flashingTimer;
             }
             else
             {
+                Death.Play();
                 GetComponent<Animator>().SetBool("ZombieDying", true);
                 GameObject.Destroy(gameObject, 1.0f);
 
