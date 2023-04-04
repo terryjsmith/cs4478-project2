@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
     bool flipped = false;
 
     Image damagePanel;
+    bool m_jumping;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,8 @@ public class PlayerInput : MonoBehaviour
         hearts.Add(GameObject.Find("Heart3"));
 
         damagePanel = GameObject.Find("DamagePanel").GetComponent<Image>();
+
+        m_jumping = false;
     }
 
     // Update is called once per frame
@@ -80,11 +84,17 @@ public class PlayerInput : MonoBehaviour
             flipped = false;
         }
 
+        if(m_rigidBody.velocity.y == 0.0f)
+        {
+            m_jumping = false;
+        }
+
         // Check for jump and add force against gravity
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && (m_jumping == false))
         {
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
             m_rigidBody.AddForce(transform.up * playerThrust);
+            m_jumping = true;
         }
 
         // Check for firing bullets, play animation
@@ -124,7 +134,7 @@ public class PlayerInput : MonoBehaviour
 
             if (lifeRemaining <= 0)
             {
-                Debug.Log("Game over man!");
+                SceneManager.LoadScene("GameOverScene");
             }
             return;
         }
@@ -139,6 +149,11 @@ public class PlayerInput : MonoBehaviour
                 lifeRemaining++;
             }
             GameObject.Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene("VictoryScene");
         }
     }
 }
