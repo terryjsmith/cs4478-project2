@@ -52,14 +52,15 @@ public class Zombie : MonoBehaviour
             m_countdownTimer -= Time.deltaTime;
             if (m_countdownTimer <= 0)
             {
-                GetComponent<Animator>().SetBool("ZombieFlashing", false);
+                m_animator.SetBool("ZombieFlashing", false);
+                m_countdownTimer = 0.0f;
             }
         }
 
         // Move the zombie
         if (m_rigidBody)
         {
-            if (!m_animator.GetBool("ZombieAttacking")) // Only move if the zombie is not attacking
+            if (!m_animator.GetBool("ZombieAttacking") && (m_countdownTimer == 0.0f)) // Only move if the zombie is not attacking
             {
                 m_rigidBody.velocity = new Vector2(zombieSpeed, m_rigidBody.velocity.y);
             }
@@ -118,14 +119,14 @@ public class Zombie : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             health--;
-            if (health > 0)
+            
+            m_animator.SetBool("ZombieFlashing", true);
+            m_countdownTimer = flashingTimer;
+            
+            if(health <= 0)
             {
-                GetComponent<Animator>().SetBool("ZombieFlashing", true);
-                m_countdownTimer = flashingTimer;
-            }
-            else
-            {
-                GetComponent<Animator>().SetBool("ZombieDying", true);
+                m_animator.SetBool("ZombieDying", true);
+                m_animator.SetBool("ZombieWalking", false);
                 GameObject.Destroy(gameObject, 1.0f);
 
                 // Remove the rigidbody and collider so the player can step over a dead body without losing health
