@@ -127,14 +127,11 @@ public class Zombie : MonoBehaviour
             m_animator.SetBool("ZombieFlashing", true);
             m_countdownTimer = flashingTimer;
             
-            if(health <= 0)
-            {
-                TakingDamage.Play();
-                GetComponent<Animator>().SetBool("ZombieFlashing", true);
-                m_countdownTimer = flashingTimer;
-            }
-            else
-            {
+            TakingDamage.Play();
+            GetComponent<Animator>().SetBool("ZombieFlashing", true);
+            m_countdownTimer = flashingTimer;
+            
+            if(health <= 0) { 
                 Death.Play();
                 GetComponent<Animator>().SetBool("ZombieDying", true);
                 GameObject.Destroy(gameObject, 1.0f);
