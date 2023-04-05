@@ -15,6 +15,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     public GameObject bulletPrefab;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource gunSoundEffect;
+    [SerializeField] private AudioSource healSoundEffect;
+
     // Local copies for optimization
     Rigidbody2D m_rigidBody;
     Animator m_animator;
@@ -95,11 +99,13 @@ public class PlayerInput : MonoBehaviour
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
             m_rigidBody.AddForce(transform.up * playerThrust);
             m_jumping = true;
+            jumpSoundEffect.Play();
         }
 
         // Check for firing bullets, play animation
         if (Input.GetButtonDown("Fire1"))
         {
+            gunSoundEffect.Play();
             m_animator.SetBool("PlayerShooting", true);
             FireBullet();
         }
@@ -148,6 +154,7 @@ public class PlayerInput : MonoBehaviour
                 hearts[lifeRemaining].GetComponent<Image>().enabled = true;
                 lifeRemaining++;
             }
+            healSoundEffect.Play();
             GameObject.Destroy(collision.gameObject);
         }
 
