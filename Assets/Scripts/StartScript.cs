@@ -16,7 +16,7 @@ public class StartScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Level_3");
+            SceneManager.LoadScene("Level_5");
         }
     }
 }
