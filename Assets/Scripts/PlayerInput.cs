@@ -36,6 +36,8 @@ public class PlayerInput : MonoBehaviour
     Image damagePanel;
     bool m_jumping;
 
+    Scene m_currentScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,7 @@ public class PlayerInput : MonoBehaviour
         damagePanel = GameObject.Find("DamagePanel").GetComponent<Image>();
 
         m_jumping = false;
+        m_currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -140,7 +143,8 @@ public class PlayerInput : MonoBehaviour
 
             if (lifeRemaining <= 0)
             {
-                SceneManager.LoadScene("GameOverScene");
+                // Start current level over again
+                SceneManager.LoadScene(m_currentScene.name);
             }
             return;
         }
@@ -160,7 +164,8 @@ public class PlayerInput : MonoBehaviour
 
         if(collision.gameObject.tag == "Finish")
         {
-            SceneManager.LoadScene("VictoryScene");
+            // Move to next scene, unless max
+            SceneManager.LoadScene(m_currentScene.buildIndex + 1);
         }
     }
 }
